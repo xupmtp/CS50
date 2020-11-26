@@ -12,8 +12,9 @@ import edu.harvard.cs50.wordcard.model.Words;
 
 /**
  * 第一版 新增資料庫
+ * 第二版 修改users index
  */
-@Database(entities = {Users.class, Lessons.class, Words.class}, version = 1)
+@Database(entities = {Users.class, Lessons.class, Words.class}, version = 2)
 public abstract class WordCardDatabase extends RoomDatabase {
     public abstract UsersDao usersDao();
     public abstract LessonsDao lessonsDao();

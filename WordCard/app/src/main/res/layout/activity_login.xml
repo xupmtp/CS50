@@ -40,11 +40,12 @@
 
     <TextView
         android:id="@+id/register2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="85dp"
+        android:layout_marginStart="55dp"
         android:text="@string/sign_up_url"
+        android:onClick="goToRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/register1"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -70,11 +71,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/prompt_user"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_login" />
+
+    <TextView
+        android:id="@+id/title_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/action_sign_in"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

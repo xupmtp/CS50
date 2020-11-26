@@ -4,12 +4,15 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_user">User name</string>
     <string name="prompt_password">Password</string>
+    <string name="pwd_check">Confirm Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="sign_up_text">No account? </string>
+    <string name="sign_up">Sign up</string>
     <string name="sign_up_url"><a href="#">Sign up</a></string>
     <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_username">Must provide username</string>
+    <string name="invalid_password">Must provide password</string>
+    <string name="invalid_password_check">Must be as same as the password</string>
     <string name="login_failed">"Login failed"</string>
 </resources>

@@ -18,9 +18,9 @@ public interface UsersDao {
     @Query("select * from users where name = :name and password = :password")
     List<Users> login(String name, String password);
 
-    @Insert
+    @Insert()
     long insertUser(Users users);
 
     @Update
-    long updateUsers(Users users);
+    int updateUsers(Users users);
 }

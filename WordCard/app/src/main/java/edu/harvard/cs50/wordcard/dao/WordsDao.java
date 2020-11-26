@@ -19,5 +19,5 @@ public interface WordsDao {
     long insertWord(Words words);
 
     @Update
-    long updateWord(Words words);
+    int updateWord(Words words);
 }

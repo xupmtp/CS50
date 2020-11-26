@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.WordCardDatabase;
 import edu.harvard.cs50.wordcard.ui.login.LoginViewModel;
 import edu.harvard.cs50.wordcard.ui.login.LoginViewModelFactory;
+import edu.harvard.cs50.wordcard.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -134,5 +136,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    public void goToRegister(View view) {
+        Intent intent = new Intent(this.getApplicationContext(), RegisterActivity.class);
+        this.startActivity(intent);
     }
 }

@@ -19,6 +19,6 @@ public interface LessonsDao {
     long insertLesson(Lessons lessons);
 
     @Update
-    long updateLesson(Lessons lessons);
+    int updateLesson(Lessons lessons);
 
 }
