@@ -2,12 +2,14 @@ package edu.harvard.cs50.wordcard.ui.login;
 
 import androidx.annotation.Nullable;
 
+import edu.harvard.cs50.wordcard.model.Users;
+
 /**
  * Authentication result : success (user details) or error message.
  */
 class LoginResult {
     @Nullable
-    private LoggedInUserView success;
+    private Users success;
     @Nullable
     private Integer error;
 
@@ -15,12 +17,12 @@ class LoginResult {
         this.error = error;
     }
 
-    LoginResult(@Nullable LoggedInUserView success) {
+    LoginResult(@Nullable Users success) {
         this.success = success;
     }
 
     @Nullable
-    LoggedInUserView getSuccess() {
+    Users getSuccess() {
         return success;
     }
 

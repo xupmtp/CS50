@@ -10,6 +10,7 @@ import edu.harvard.cs50.wordcard.data.LoginRepository;
 import edu.harvard.cs50.wordcard.data.Result;
 import edu.harvard.cs50.wordcard.data.model.LoggedInUser;
 import edu.harvard.cs50.wordcard.R;
+import edu.harvard.cs50.wordcard.model.Users;
 
 public class LoginViewModel extends ViewModel {
 
@@ -31,13 +32,13 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
+        Result<Users> result = loginRepository.login(username, password);
 
         if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+            Users data = ((Result.Success<Users>) result).getData();
+            loginResult.setValue(new LoginResult(data));
         } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
+            loginResult.setValue(new LoginResult(R.string.login_failed_text));
         }
     }
 
@@ -56,15 +57,11 @@ public class LoginViewModel extends ViewModel {
         if (username == null) {
             return false;
         }
-        if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-        } else {
-            return !username.trim().isEmpty();
-        }
+        return !username.trim().isEmpty();
     }
 
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null && password.trim().length() > 0;
     }
 }

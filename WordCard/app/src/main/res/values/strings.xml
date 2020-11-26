@@ -15,4 +15,5 @@
     <string name="invalid_password">Must provide password</string>
     <string name="invalid_password_check">Must be as same as the password</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="login_failed_text">"User name or password error"</string>
 </resources>

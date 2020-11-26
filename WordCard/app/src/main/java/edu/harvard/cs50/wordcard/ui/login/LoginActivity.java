@@ -24,8 +24,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.harvard.cs50.wordcard.MainActivity;
 import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.WordCardDatabase;
+import edu.harvard.cs50.wordcard.model.Users;
 import edu.harvard.cs50.wordcard.ui.login.LoginViewModel;
 import edu.harvard.cs50.wordcard.ui.login.LoginViewModelFactory;
 import edu.harvard.cs50.wordcard.ui.register.RegisterActivity;
@@ -76,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
+                    return;
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
@@ -128,14 +131,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
+    private void updateUiWithUser(Users model) {
+        String welcome = getString(R.string.welcome) + model.getName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
+        intent.putExtra("id", model.getId());
+        intent.putExtra("username", model.getName());
+
+        this.startActivity(intent);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+
     }
 
     public void goToRegister(View view) {
