@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -47,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
+
+        checkLogin();
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
@@ -131,10 +134,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
     private void updateUiWithUser(Users model) {
         String welcome = getString(R.string.welcome) + model.getName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+
+        getPreferences(Context.MODE_PRIVATE).edit().putInt("id", model.getId()).apply();
+        getPreferences(Context.MODE_PRIVATE).edit().putString("name", model.getName()).apply();
 
         Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
         intent.putExtra("id", model.getId());
@@ -150,6 +157,17 @@ public class LoginActivity extends AppCompatActivity {
 
     public void goToRegister(View view) {
         Intent intent = new Intent(this.getApplicationContext(), RegisterActivity.class);
+        this.startActivity(intent);
+    }
+
+    private void checkLogin() {
+        int id = getPreferences(Context.MODE_PRIVATE).getInt("id", -1);
+        String name = getPreferences(Context.MODE_PRIVATE).getString("name", null);
+        if (name == null || id == -1)
+            return;
+        Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("username", name);
         this.startActivity(intent);
     }
 }
