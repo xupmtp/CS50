@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,11 +24,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.harvard.cs50.wordcard.R;
+import edu.harvard.cs50.wordcard.WordCardDatabase;
 import edu.harvard.cs50.wordcard.ui.login.LoginViewModel;
 import edu.harvard.cs50.wordcard.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static WordCardDatabase database;
     private LoginViewModel loginViewModel;
 
     @Override
@@ -36,6 +39,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+        database = Room.databaseBuilder(this.getApplicationContext(), WordCardDatabase.class, "Wordcard")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
