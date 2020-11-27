@@ -61,8 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
             List<Users> userList = dao.selectByName(users.getName());
+
+            getSharedPreferences("session", MODE_PRIVATE).edit().putInt("id", userList.get(0).getId()).apply();
+            getSharedPreferences("session", MODE_PRIVATE).edit().putString("username", userList.get(0).getName()).apply();
+
             Intent intent = new Intent(this.getApplication(), MainActivity.class);
-            intent.putExtra("userId", userList.get(0).getId());
+            intent.putExtra("id", userList.get(0).getId());
             intent.putExtra("username", userList.get(0).getName());
 
             this.startActivity(intent);

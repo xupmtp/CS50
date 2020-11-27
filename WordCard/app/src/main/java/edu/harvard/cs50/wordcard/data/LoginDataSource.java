@@ -15,7 +15,6 @@ public class LoginDataSource {
     public Result<Users> login(String username, String password) {
 
         try {
-            // TODO: handle loggedInUser authentication
             List<Users> usersList = LoginActivity.database.usersDao().login(username, password);
             if (usersList.size() < 1)
                 throw new Exception();
@@ -26,6 +25,5 @@ public class LoginDataSource {
     }
 
     public void logout() {
-        // TODO: revoke authentication
     }
 }

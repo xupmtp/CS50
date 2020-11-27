@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public static WordCardDatabase database;
     private LoginViewModel loginViewModel;
+    private SharedPreferences preferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 .fallbackToDestructiveMigration()
                 .build();
 
+        preferences = getSharedPreferences("session", MODE_PRIVATE);
         checkLogin();
 
         final EditText usernameEditText = findViewById(R.id.username);
@@ -137,11 +140,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUiWithUser(Users model) {
         String welcome = getString(R.string.welcome) + model.getName();
-        // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 
-        getPreferences(Context.MODE_PRIVATE).edit().putInt("id", model.getId()).apply();
-        getPreferences(Context.MODE_PRIVATE).edit().putString("name", model.getName()).apply();
+        preferences.edit().putInt("id", model.getId()).apply();
+        preferences.edit().putString("username", model.getName()).apply();
 
         Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
         intent.putExtra("id", model.getId());
@@ -161,8 +163,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkLogin() {
-        int id = getPreferences(Context.MODE_PRIVATE).getInt("id", -1);
-        String name = getPreferences(Context.MODE_PRIVATE).getString("name", null);
+        int id = preferences.getInt("id", -1);
+        String name = preferences.getString("username", null);
         if (name == null || id == -1)
             return;
         Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
