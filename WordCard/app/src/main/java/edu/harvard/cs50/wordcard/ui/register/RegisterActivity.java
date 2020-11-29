@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import java.util.List;
 
-import edu.harvard.cs50.wordcard.MainActivity;
+import edu.harvard.cs50.wordcard.ui.main.MainActivity;
 import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.dao.UsersDao;
 import edu.harvard.cs50.wordcard.model.Users;

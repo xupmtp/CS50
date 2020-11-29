@@ -5,7 +5,6 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,12 +25,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import edu.harvard.cs50.wordcard.MainActivity;
+import edu.harvard.cs50.wordcard.ui.main.MainActivity;
 import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.WordCardDatabase;
 import edu.harvard.cs50.wordcard.model.Users;
-import edu.harvard.cs50.wordcard.ui.login.LoginViewModel;
-import edu.harvard.cs50.wordcard.ui.login.LoginViewModelFactory;
 import edu.harvard.cs50.wordcard.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {

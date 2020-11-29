@@ -1,4 +1,4 @@
-package edu.harvard.cs50.wordcard;
+package edu.harvard.cs50.wordcard.ui.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.dao.UsersDao;
 import edu.harvard.cs50.wordcard.model.Users;
 import edu.harvard.cs50.wordcard.ui.login.LoginActivity;
