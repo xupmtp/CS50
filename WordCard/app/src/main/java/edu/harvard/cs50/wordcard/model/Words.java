@@ -28,6 +28,9 @@ public class Words {
     @ColumnInfo(name = "back_detail")
     private String backDetail;
 
+    @ColumnInfo(name = "favorite", defaultValue = "0")
+    private boolean favorite;
+
     //user刪除時不delete 改修狀態
     @ColumnInfo(name = "is_alive", defaultValue = "1")
     private boolean isAlive;
@@ -36,10 +39,11 @@ public class Words {
 
     }
 
-    public Words(int lessonsId, String frontWord, String backDetail, boolean isAlive) {
+    public Words(int lessonsId, String frontWord, String backDetail, boolean favorite, boolean isAlive) {
         this.lessonsId = lessonsId;
         this.frontWord = frontWord;
         this.backDetail = backDetail;
+        this.favorite = favorite;
         this.isAlive = isAlive;
     }
 
@@ -81,5 +85,13 @@ public class Words {
 
     public void setAlive(boolean alive) {
         isAlive = alive;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

@@ -32,8 +32,6 @@ public class AddLessonActivity extends AppCompatActivity {
 
             Lessons lessons = new Lessons(id, text, true);
             LoginActivity.database.lessonsDao().insertLesson(lessons);
-//            Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
-//            this.startActivity(intent);
             finish();
         });
     }

@@ -11,10 +11,11 @@ import edu.harvard.cs50.wordcard.model.Users;
 import edu.harvard.cs50.wordcard.model.Words;
 
 /**
- * 第一版 新增資料庫
- * 第二版 修改users index
+ * v1 新增資料庫
+ * v2 修改users index
+ * v3 words class新增favorite欄位
  */
-@Database(entities = {Users.class, Lessons.class, Words.class}, version = 2)
+@Database(entities = {Users.class, Lessons.class, Words.class}, version = 3)
 public abstract class WordCardDatabase extends RoomDatabase {
     public abstract UsersDao usersDao();
     public abstract LessonsDao lessonsDao();

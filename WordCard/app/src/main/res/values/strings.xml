@@ -26,5 +26,8 @@
     <string name="success_edit">Successfully modified! Please login again.</string>
     <string name="new_lesson">New lesson</string>
     <string name="add_lesson">Lesson name</string>
+    <string name="new_word">New word</string>
+    <string name="word_detail">Detail</string>
+    <string name="word_switch">Show favorite card</string>
     <string name="add">Add</string>
 </resources>
