@@ -10,6 +10,50 @@
         android:padding="30dp"
         android:src="@drawable/rectangle"/>
 
+    <ImageButton
+        android:id="@+id/front_edit_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="45dp"
+        android:tint="@color/blue"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@string/new_word"
+        android:src="@mipmap/ic_edit_foreground" />
+
+    <Button
+        android:id="@+id/front_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="44dp"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:background="@android:color/transparent"
+        android:text="@string/finish" />
+
+    <Button
+        android:id="@+id/front_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="44dp"
+        android:text="@string/cancel"
+        android:textColor="@color/blue"
+        android:visibility="gone"
+        android:background="@android:color/transparent"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        style="@style/Base.TextAppearance.AppCompat.Display1"
+        android:id="@+id/front_edit_text"
+        android:visibility="gone"
+        android:gravity="center"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +61,4 @@
         style="@style/Base.TextAppearance.AppCompat.Display1"
         android:id="@+id/card_front_text"
         android:gravity="center"/>
-
-
 </FrameLayout>

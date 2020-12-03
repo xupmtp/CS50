@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import edu.harvard.cs50.wordcard.CheckLogin;
+import edu.harvard.cs50.wordcard.Util;
 import edu.harvard.cs50.wordcard.ui.profile.EditProfileActivity;
 import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.adapter.LessonAdapter;
@@ -63,17 +64,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        String title = item.getTitle().toString();
-        Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
-        if (getString(R.string.logout).equals(title)){
-            getSharedPreferences("session", MODE_PRIVATE).edit().clear().apply();
-            intent = new Intent(this.getApplicationContext(), LoginActivity.class);
-        } else if (getString(R.string.edit_profile).equals(title)) {
-            intent = new Intent(this.getApplicationContext(), EditProfileActivity.class);
-            intent.putExtra("username", getIntent().getStringExtra("username"));
-        }
-        this.startActivity(intent);
-        return true;
+        return Util.menuEvent(item, this);
     }
 
     @Override

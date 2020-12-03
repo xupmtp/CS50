@@ -27,6 +27,6 @@ public interface WordsDao {
     @Query("update words set favorite = :favorite where id = :id")
     int updateFavorite(boolean favorite, int id);
 
-    @Query("update words set front_word = :word and back_detail = :detail where id = :id")
+    @Query("update words set front_word = :word, back_detail = :detail where id = :id")
     int updateWordText(String word, String detail, int id);
 }
