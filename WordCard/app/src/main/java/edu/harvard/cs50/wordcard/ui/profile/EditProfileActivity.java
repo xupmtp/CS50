@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import edu.harvard.cs50.wordcard.CheckLogin;
 import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.dao.UsersDao;
 import edu.harvard.cs50.wordcard.model.Users;
@@ -30,7 +31,8 @@ public class EditProfileActivity extends AppCompatActivity {
         editPwdCheck = findViewById(R.id.edit_pwd_check);
         editEmail = findViewById(R.id.edit_email);
 
-        String name = getIntent().getStringExtra("username");
+        String name = getSharedPreferences("session", MODE_PRIVATE).getString("username", null);
+        CheckLogin.checkName(name, this);
         user = dao.selectByName(name).get(0);
         editEmail.setText(user.getEmail());
     }

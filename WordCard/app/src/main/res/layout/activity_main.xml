@@ -6,9 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/tool_bar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:id="@+id/main_recycle_view"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,9 +25,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="30dp"
         android:contentDescription="@string/new_lesson"
-        android:tint="@color/cardview_light_background"
+        app:backgroundTint="@color/icon_01"
         app:fabCustomSize="80dp"
         app:maxImageSize="40dp"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@mipmap/ic_add_folder_1_foreground" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

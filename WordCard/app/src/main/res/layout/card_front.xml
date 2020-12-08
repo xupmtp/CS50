@@ -48,8 +48,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/white"
+        android:textColor="@color/app_text"
         style="@style/Base.TextAppearance.AppCompat.Display1"
+        android:background="@android:color/transparent"
         android:id="@+id/front_edit_text"
         android:visibility="gone"
         android:gravity="center"/>
@@ -57,8 +58,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/white"
+        android:textColor="@color/app_text"
         style="@style/Base.TextAppearance.AppCompat.Display1"
+        android:background="@android:color/transparent"
         android:id="@+id/card_front_text"
         android:gravity="center"/>
 </FrameLayout>

@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:textSize="25sp"
         android:text="@string/word_switch"
         android:id="@+id/word_switch" />
 
@@ -17,7 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/word_recycle_view"
-        android:layout_marginTop="90dp" />
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_word_button"
@@ -26,7 +30,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="30dp"
         android:contentDescription="@string/new_word"
-        android:tint="@color/cardview_light_background"
+        app:backgroundTint="@color/icon_01"
         app:fabCustomSize="80dp"
         app:maxImageSize="40dp"
         app:srcCompat="@android:drawable/ic_input_add" />

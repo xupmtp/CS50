@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WordCard</string>
+    <string name="app_name">Word Card</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_user">User name</string>
@@ -28,7 +28,7 @@
     <string name="add_lesson">Lesson name</string>
     <string name="new_word">New word</string>
     <string name="word_detail">Detail</string>
-    <string name="word_switch">Show favorite card</string>
+    <string name="word_switch">Favorite card</string>
     <string name="add">Add</string>
     <string name="finish">Finish</string>
     <string name="cancel">Cancel</string>

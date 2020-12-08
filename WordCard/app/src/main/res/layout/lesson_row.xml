@@ -7,8 +7,13 @@
 
     <TextView
         android:id="@+id/lesson_row_text"
-        android:textSize="25sp"
+        android:paddingTop="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="40sp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="80dp"
+        android:textAlignment="center"
+        android:textColor="@color/app_text"
+        android:background="@drawable/lesson_row_style"/>
 
 </LinearLayout>
