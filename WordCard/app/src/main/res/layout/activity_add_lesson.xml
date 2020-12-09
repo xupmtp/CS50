@@ -25,9 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:text="@string/add"
-        android:textSize="20sp"
-        android:background="@drawable/bg_round_button"
-        android:layout_gravity="center"
-        android:radius="105dip"/>
+        style="@style/ButtonStyle" />
 
 </LinearLayout>
