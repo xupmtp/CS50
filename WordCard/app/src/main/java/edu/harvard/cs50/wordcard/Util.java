@@ -12,8 +12,15 @@ import edu.harvard.cs50.wordcard.ui.profile.EditProfileActivity;
 import static android.content.Context.MODE_PRIVATE;
 
 public class Util {
-    
+
+    /**
+     * toolBar按鈕點擊事件
+     * @param item
+     * @param activity
+     * @return
+     */
     public static boolean menuEvent (MenuItem item, AppCompatActivity activity) {
+        // back按鈕 ID為android預設ID
         if( item.getItemId() == android.R.id.home) {
             activity.finish();
             return true;

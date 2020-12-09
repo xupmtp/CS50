@@ -60,6 +60,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             containLayout.setOnClickListener(v -> {
                 Lessons current = (Lessons) v.getTag();
 
+                //點擊recycleView跳轉到wordActivity
                 Intent intent = new Intent(v.getContext(), WordActivity.class);
                 intent.putExtra("lessonId", current.getId());
                 v.getContext().startActivity(intent);

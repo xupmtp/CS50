@@ -33,6 +33,8 @@ public class WordActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word);
+        // 呼叫setDisplayHomeAsUpEnabled()啟用toolbar的back按鈕, 按鈕事件需自行定義
+        // requireNonNull()檢查ActionBar是否為null
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.word_recycle_view);
@@ -46,6 +48,7 @@ public class WordActivity extends AppCompatActivity implements SearchView.OnQuer
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(wordAdapter);
 
+        // 新增單字事件
         FloatingActionButton button = findViewById(R.id.add_word_button);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(this.getApplicationContext(), AddWordActivity.class);
@@ -54,6 +57,11 @@ public class WordActivity extends AppCompatActivity implements SearchView.OnQuer
         });
     }
 
+    /**
+     * 啟用選單
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.logout_menu, menu);
@@ -73,6 +81,9 @@ public class WordActivity extends AppCompatActivity implements SearchView.OnQuer
         return Util.menuEvent(item, this);
     }
 
+    /**
+     * 每次回到此activity要重新loading 同時過濾search的單字
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -85,7 +96,6 @@ public class WordActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onSupportNavigateUp() {
-        // do your stuff
         wordAdapter.getFilter().filter(searchView.getQuery());
         return super.onSupportNavigateUp();
     }

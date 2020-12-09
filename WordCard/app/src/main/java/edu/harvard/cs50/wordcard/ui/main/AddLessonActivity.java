@@ -27,6 +27,8 @@ public class AddLessonActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.new_lesson_button);
         EditText editText = findViewById(R.id.add_lesson);
+
+        //新增button事件
         button.setOnClickListener(v -> {
             String text = editText.getText().toString().trim();
             if (text.isEmpty()) {

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(lessonAdapter);
 
+        // 新增lesson事件
         FloatingActionButton addButton = findViewById(R.id.add_lesson_button);
         addButton.setOnClickListener(v -> {
             Intent intent = new Intent(this.getApplicationContext(), AddLessonActivity.class);
@@ -68,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         return Util.menuEvent(item, this);
     }
 
+    /**
+     * 每次回到此activity要重新loading
+     */
     @Override
     protected void onResume() {
         super.onResume();

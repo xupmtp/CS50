@@ -43,6 +43,10 @@ public class EditProfileActivity extends AppCompatActivity {
         editEmail.setText(user.getEmail());
     }
 
+    /**
+     * 編輯完成按鈕點擊事件
+     * @param view
+     */
     public void editProfile(View view) {
         String pwd = editPassword.getText().toString().trim();
         String pwdCheck = editPwdCheck.getText().toString().trim();

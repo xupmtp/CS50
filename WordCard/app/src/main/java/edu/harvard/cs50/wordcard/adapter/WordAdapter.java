@@ -26,10 +26,12 @@ import edu.harvard.cs50.wordcard.ui.login.LoginActivity;
 
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder> implements Filterable {
 
+    //存DB查到的完整資料
     List<Words> wordsList = new ArrayList<>();
-    //存search資料
+    //存search後的暫存資料
     List<Words> wordsListFilter = new ArrayList<>();
     WordsDao wordDao = LoginActivity.database.wordsDao();
+    //抓favorite switch狀態用
     private SwitchCompat favoriteSwitch;
 
     public WordAdapter(SwitchCompat favoriteSwitch) {
@@ -57,6 +59,11 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
         return wordsListFilter.size();
     }
 
+    /**
+     * favorite switch啟用時只抓最愛的words
+     * @param lessonId
+     * @param favorite switch是否啟用
+     */
     public void reload(int lessonId, boolean favorite) {
         if (favorite)
             wordsList = wordDao.selectFavoriteWords(lessonId);
@@ -67,17 +74,29 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
     }
 
 
-
+    /**
+     * 黃星表示最愛 白星反之
+     * @param favorite
+     * @param itemView
+     * @return 回傳黃星 or 白星 icon
+     */
     private static int getStarId(boolean favorite, View itemView) {
         String star = favorite ? "on" : "off";
         return itemView.getResources().getIdentifier("@android:drawable/btn_star_big_" + star, null, null);
     }
 
+    /**
+     * 搜尋時呼叫的方法
+     * @return
+     */
     @Override
     public Filter getFilter() {
         return new wordFilter();
     }
 
+    /**
+     * 搜尋時過濾字元的class
+     */
     public class wordFilter extends Filter {
 
         @Override
@@ -113,6 +132,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
             imageView = itemView.findViewById(R.id.word_star);
             containLayout = itemView.findViewById(R.id.word_row);
 
+            // 星星點擊時切換喜愛狀態並發出SQL更新該筆資料
             imageView.setOnClickListener(v -> {
                 Words current = (Words) containLayout.getTag();
 
@@ -121,6 +141,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
                 reload(current.getLessonsId(), favoriteSwitch.isChecked());
             });
 
+            // 點擊recycleView跳轉至CardActivity
             containLayout.setOnClickListener(v -> {
                 Words current = (Words) containLayout.getTag();
 

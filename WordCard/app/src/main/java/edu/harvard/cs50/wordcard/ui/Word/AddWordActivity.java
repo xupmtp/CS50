@@ -29,6 +29,7 @@ public class AddWordActivity extends AppCompatActivity {
         Button button = findViewById(R.id.new_word_button);
         int lessonId = getIntent().getIntExtra("lessonId", -1);
 
+        //新增單字按鈕事件
         button.setOnClickListener(v -> {
             Words words = new Words(lessonId,
                     word.getText().toString().trim(),
