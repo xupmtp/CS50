@@ -14,6 +14,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.Util;
 import edu.harvard.cs50.wordcard.adapter.WordAdapter;
@@ -31,6 +33,7 @@ public class WordActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.word_recycle_view);
         layoutManager = new LinearLayoutManager(this);
@@ -84,8 +87,6 @@ public class WordActivity extends AppCompatActivity implements SearchView.OnQuer
     public boolean onSupportNavigateUp() {
         // do your stuff
         wordAdapter.getFilter().filter(searchView.getQuery());
-        System.out.println("qqqqq");
-
         return super.onSupportNavigateUp();
     }
 

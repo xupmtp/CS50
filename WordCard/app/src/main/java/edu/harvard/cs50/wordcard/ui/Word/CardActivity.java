@@ -1,5 +1,6 @@
 package edu.harvard.cs50.wordcard.ui.Word;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -17,7 +19,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import edu.harvard.cs50.wordcard.R;
+import edu.harvard.cs50.wordcard.Util;
 import edu.harvard.cs50.wordcard.dao.WordsDao;
 import edu.harvard.cs50.wordcard.model.Words;
 import edu.harvard.cs50.wordcard.ui.login.LoginActivity;
@@ -40,6 +45,7 @@ public class CardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         cardBackView = findViewById(R.id.card_back);
         cardFrontView = findViewById(R.id.card_front);
@@ -147,6 +153,16 @@ public class CardActivity extends AppCompatActivity {
         int back = dao.updateWordText(front, backText, wordId);
         ((TextView) views[1]).setText(backText);
         targetChange(views);
+    }
+
+    /**
+     * toolbar event
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return Util.menuEvent(item, this);
     }
 
     /**

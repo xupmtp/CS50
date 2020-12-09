@@ -14,6 +14,11 @@ import static android.content.Context.MODE_PRIVATE;
 public class Util {
     
     public static boolean menuEvent (MenuItem item, AppCompatActivity activity) {
+        if( item.getItemId() == android.R.id.home) {
+            activity.finish();
+            return true;
+        }
+
         String title = item.getTitle().toString();
         Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
         if (activity.getString(R.string.logout).equals(title)){

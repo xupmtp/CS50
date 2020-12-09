@@ -1,15 +1,20 @@
 package edu.harvard.cs50.wordcard.ui.profile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import edu.harvard.cs50.wordcard.CheckLogin;
 import edu.harvard.cs50.wordcard.R;
+import edu.harvard.cs50.wordcard.Util;
 import edu.harvard.cs50.wordcard.dao.UsersDao;
 import edu.harvard.cs50.wordcard.model.Users;
 import edu.harvard.cs50.wordcard.ui.login.LoginActivity;
@@ -26,6 +31,7 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         editPassword = findViewById(R.id.edit_password);
         editPwdCheck = findViewById(R.id.edit_pwd_check);
@@ -55,5 +61,15 @@ public class EditProfileActivity extends AppCompatActivity {
             Intent intent = new Intent(this.getApplicationContext(), LoginActivity.class);
             this.startActivity(intent);
         }
+    }
+
+    /**
+     * toolbar event
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return Util.menuEvent(item, this);
     }
 }

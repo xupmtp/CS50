@@ -1,16 +1,20 @@
 package edu.harvard.cs50.wordcard.ui.register;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import java.util.List;
+import java.util.Objects;
 
+import edu.harvard.cs50.wordcard.Util;
 import edu.harvard.cs50.wordcard.ui.main.MainActivity;
 import edu.harvard.cs50.wordcard.R;
 import edu.harvard.cs50.wordcard.dao.UsersDao;
@@ -28,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
@@ -71,5 +76,15 @@ public class RegisterActivity extends AppCompatActivity {
 
             this.startActivity(intent);
         }
+    }
+
+    /**
+     * toolbar event
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return Util.menuEvent(item, this);
     }
 }
