@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 加入Babel解析JSX語法 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+</head>
+<body>
+    <div id="main"></div>
+    <script type="text/babel">
+    class App extends React.Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                count: 6
+            }
+        }
+        
+        // 頁面載入時觸發 抓取local儲存的值
+        componentDidMount() {
+            const count = localStorage.getItem("count");
+            if (count !== null) {
+                this.setState({
+                    count: parseInt(count)
+                })
+            }
+
+            // window事件,在關閉頁面前觸發
+            // https://developer.mozilla.org/zh-TW/docs/Web/Events/load
+            window.addEventListener("beforeunload", () => {
+                localStorage.setItem("count", this.state.count)
+            })
+        }
+
+        render() {
+            return (
+                <div>
+                    <h2>Count: {this.state.count}</h2>
+                    <button onClick={this.increment}>+</button>    
+                </div>
+            )
+        }
+
+        increment = () => {
+            this.setState(state => ({
+                count: state.count + 1
+            }))
+        }
+    }
+
+    ReactDOM.render(<App />, document.querySelector("#main"))
+    </script>
+</body>
+</html>

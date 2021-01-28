@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 加入Babel解析JSX語法 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+</head>
+<body>
+    <div id="main"></div>
+    <script type="text/babel">
+        class Task extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    task: [],
+                    input: ""
+                }
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>Tasks</h1>
+                        <ul>
+                            {this.state.task.map((task, i) => 
+                                <li key={i}>
+                                    {
+                                        // 匿名函數retrun值為deleteTask(i),這樣才可傳入i值
+                                    }
+                                    <button data-index={i} onClick={this.deleteTask}>Delete</button>
+                                    {task}
+                                </li>
+                                )}
+                        </ul>
+                        <div>
+                            <input onChange={this.handleChange} value={this.state.input} />
+                            <button onClick={this.addTask}>Add Task</button>    
+                        </div>
+                    </div>
+                )
+            }
+            handleChange = event => {
+                this.setState({
+                    input: event.target.value
+                })
+            }
+
+            addTask = () => {
+                this.setState(state => ({
+                    // 以新陣列取代舊的而不是用push()加入
+                    task: [...state.task, state.input],
+                    input: ""
+                }))
+            }
+
+            deleteTask = (event) => {
+                // event.target的dataset可取得自訂屬性名稱的值
+                const index = event.target.dataset.index
+                this.setState(state => {
+                    /**
+                     * 若寫成
+                     * task = [...this.state.task]
+                     * 可能會產生競爭的潛在可能
+                     */
+                    const task = [...state.task]
+                    // 刪除index的陣列值
+                    task.splice(index, 1)
+                    return {task: task}
+                })
+            }
+        }
+        ReactDOM.render(<Task />, document.querySelector("#main"))
+    </script>
+</body>
+</html>

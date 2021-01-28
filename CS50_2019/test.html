@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cycle{
+            background-color: blue;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        table td{
+            border: 1px solid black;
+        }
+        table td:nth-child(7){
+            background-color: rgb(149, 230, 176);
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+        table div {
+            width: 50px;
+            height: 50px;
+            background-color: slategrey;
+            border-radius: 50%;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td onclick="console.log(event.target)"><div>aaa</div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+        </tr>
+        <tr>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+        </tr>
+        <tr>
+            <td><div></div></td>
+            <td><div></div></td>
+            <td><div></div></td>
+        </tr>
+    </table>
+</body>
+</html>

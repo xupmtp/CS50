@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 加入Babel解析JSX語法 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+</head>
+<body>
+    <div id="main"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    // 題目
+                    num1: Math.ceil(Math.random(9) * 10),
+                    num2: Math.ceil(Math.random(9) * 10),
+                    // 分數
+                    score: 0,
+                    // 輸入框
+                    response: ""
+                }
+            }
+
+            render() {
+                if(this.state.score === 5)
+                    return this.renderWin()
+                else
+                    return this.renderProblem()
+            }
+
+            renderWin() {
+                return <h1>Congratulations! You win!</h1>
+            }
+
+            renderProblem() {
+                return (
+                    <div>
+                        <h2>{this.state.num1} + {this.state.num2}</h2>
+                        <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse} value={this.state.response} />
+                        <div>
+                            Score: {this.state.score}
+                        </div>
+                    </div>
+                )
+            }
+
+            updateResponse = event => {
+                this.setState({
+                    // event是JS的事件屬性
+                    response: event.target.value
+                })
+            }
+
+            inputKeyPress = event => {
+                // 按下Enter時,key是JS的事件屬性
+                if (event.key === 'Enter'){
+                    const ans = parseInt(this.state.response)
+                    // 正確時
+                    if (ans === this.state.num1 + this.state.num2) {
+                        this.setState(state => ({
+                            // 分數加1
+                            score: state.score + 1,
+                            // 重新替換題目
+                            num1: Math.ceil(Math.random(9) * 10),
+                            num2: Math.ceil(Math.random(9) * 10),
+                            // 輸入框清空
+                            response: ""
+                        }))
+                    }
+                    else {
+                        this.setState({
+                            response: ""
+                        })
+                    }
+                }
+            }
+        }
+        ReactDOM.render(<App />, document.querySelector("#main"))
+    </script>
+</body>
+</html>

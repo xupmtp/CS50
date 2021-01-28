@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 加入Babel解析JSX語法 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+</head>
+<body>
+    <div id="main"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(props) {
+                super(props)
+                // 儲存下拉要顯示哪些貨幣
+                this.currencies = ['AUD', 'CAD', 'CHF', 'CNY', 'INR', 'USD', 'EUR', 'GBP', 'JPY', 'NZD']
+                // ajax取得的資料存在這裡 一分鐘內不發出重複的請求
+                this.cached = {}
+                this.state = {
+                    base: 'USD',
+                    other: 'EUR',
+                    value: 0,
+                    converted: 0
+                }
+            }
+            render() {
+                return (
+                    <div>
+                        <div>
+                            <select onChange={this.makeSelection} name="base" value={this.state.base}>
+                                {this.currencies.map(curreny => <option key={curreny} value={curreny}>{curreny}</option>)}
+                            </select>
+                            <input name="value" onChange={this.changeValue} value={this.state.value} />
+                        </div>
+                        <div>
+                            <select onChange={this.makeSelection} name="other" value={this.state.other}>
+                                {this.currencies.map(curreny => <option key={curreny} value={curreny}>{curreny}</option>)}
+                            </select>
+                            <input disabled={true} value={this.state.converted === null ? 'Calculate...' : this.state.converted} />
+                        </div>
+                    </div>)
+            }
+
+            // 下拉選單切換時也要轉換貨幣
+            makeSelection = (event) => {
+                this.setState({
+                    [event.target.name]: event.target.value
+                }, this.recalculate)
+            }
+
+            changeValue = (event) => {
+                /**
+                 *  防止異步先完成導致recalculate()比setState()先執行
+                 *  setState()第2參數是callback函數,當setState()參數更新後才執行callback函數
+                */
+                this.setState({
+                    [event.target.name]: event.target.value,
+                    // 當ajax在loading時converted顯示loading文字
+                    converted: null
+                }, this.recalculate)
+            }
+
+            recalculate = () => {
+                const value = parseFloat(this.state.value)
+                // 不是數字時不做轉換
+                if (isNaN(value)) {
+                    this.setState({
+                        converted: 0
+                    })
+                    return
+                }
+
+                // 若之前有發出一樣的請求且距離上次發出小於1分鐘時,資料改從cached撈出
+                if (this.cached[this.state.base] !== undefined && Date.now() - this.cached[this.state.base].timestamp < 60 * 1000) {
+                    this.setState({
+                        converted: this.cached[this.state.base].rates[this.state.other] * value
+                    })
+                    return
+                }
+
+                // ajax新版函數
+                fetch(`https://api.exchangeratesapi.io/latest?base=${this.state.base}`)
+                .then(response => response.json())
+                .then(data => {
+                    // response data儲存在緩存
+                    this.cached[this.state.base] = {
+                        // 儲存data
+                        rates: data.rates,
+                        // 紀錄這次ajax取得資料的時間
+                        timestamp: Date.now()
+                    }
+                    this.setState({
+                        converted: data.rates[this.state.other] * value
+                    })
+                })
+            }
+        }
+        ReactDOM.render(<App />, document.querySelector("#main"))
+    </script>
+</body>
+</html>

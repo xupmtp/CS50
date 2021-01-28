@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 加入Babel解析JSX語法 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        table, th, td {
+            border: 1.5px solid black;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            /* 置中 */
+            margin-left:auto; 
+            margin-right:auto;
+        }
+        th, td {
+            padding: 7px;
+        }
+        .cycle {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background-color:white;
+        }
+        .main {
+            text-align: center;
+        }
+        /* table tr:nth-last-child(1) td:nth-child(1) div {
+            background-color: red;
+        } */
+    </style> 
+</head>
+<body>
+    <div id="main" class="main"></div>
+    <script type="text/babel">
+    class App extends React.Component {
+        constructor(props) {
+            super(props)
+            let table = []
+            for (let i = 0;i < 7;i++){
+                let arr = [];
+                for (let j = 0;j < 7;j++){
+                    arr.push(0)
+                }
+                table.push(arr)
+            }
+            this.state = {
+                count: 6,
+                table: table
+            }
+        }
+
+        render() {
+            const table = this.state.table.map((arr, index) => {
+                return (
+                    <tr key={index}>
+                    {arr.map((val, i) => {
+                        return (
+                            <td data-index={i} 
+                                key={i}
+                                onMouseEnter={this.mouseHover}
+                                onMouseLeave={this.mouseLeave}>
+                                <div className="cycle"></div>
+                            </td>
+                        )
+                    })}
+                    </tr>
+                )
+            })
+            return (
+                <div>
+                    <h2>四連棋遊戲</h2>
+                    <table>
+                        <tbody>
+                            {table}
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+
+        mouseHover = (event) => this.mouseEvent(event, '#E0E0E0')
+
+        mouseLeave = (event) => this.mouseEvent(event, 'white')
+
+        /**
+         *  https://www.itread01.com/content/1545071047.html
+         *  event.target可能取得div元素,index為undefined
+         */
+        mouseEvent = (event, color) => {
+            const tds = document.querySelectorAll(`table td:nth-child(${parseInt(event.currentTarget.dataset.index) + 1})`)
+            tds.forEach((ele) => ele.style.backgroundColor = color)
+        }
+    }
+
+    ReactDOM.render(<App />, document.querySelector("#main"))
+    </script>
+</body>
+</html>
