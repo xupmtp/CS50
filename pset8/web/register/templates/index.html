@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+        <h1>Register</h1>
+        <ul>
+            {% for t in todos %}
+                <li>{{t}}</li>
+            {% endfor %}
+        </ul>
+        <a href="/add">Go to add</a>
+{% endblock %}

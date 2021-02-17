@@ -1,0 +1,34 @@
+.contain{
+    margin-top : 5%;
+}
+.content{
+    height : 25vw;
+    margin : 10px;
+    text-align : center;
+    line-height:25vw;
+    color : black;
+    font-size : 6rem;
+}
+#fiftyWord{
+    background-color : #00FFFF;
+}
+#fiftyWord:hover{
+    background-color : #00CACA;
+}
+#phrase{
+    background-color : #FFDC35;
+}
+#phrase:hover{
+    background-color : #EAC100;
+}
+
+a:hover{
+    text-decoration:none;
+    color : black;
+}
+#wordTable{
+    margin : 20px;
+}
+table{
+    text-align : center;
+}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell Shares
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <select class="form-control" name="symbol" id="symbol">
+              <option disabled selected>Symbol</option>
+              {% for share in shares %}
+                  <option value={{ share["symbol"] }}>{{ share["symbol"] }}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input class="form-control" min="1" name="shares" placeholder="Shares" type="number">
+        </div>
+        <div class="form-group errorMsg" id="errMsg">
+            {{ errorMsg }}
+        </div>
+        <button class="btn btn-primary" id="subtn" type="submit">Sell</button>
+    </form>
+    <script>
+    $("#symbol").change(() =>{
+        console.log($("#symbol").val())
+    })
+
+        $("#subtn").on('click', () => {
+            let err = $("#errMsg")
+            if (!$("#symbol").val()) {
+                err.html('must provide symbol')
+                return false
+            }
+
+            if (!$("input[name='shares']").val()) {
+                err.html('must provide shares')
+                return false
+            }
+            return true
+        });
+
+    </script>
+{% endblock %}

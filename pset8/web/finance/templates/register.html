@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post" id="registerForm">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="password" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="checkPassword" name="checkPassword" placeholder="Check Password" type="password">
+        </div>
+        <div class="form-group errorMsg" id="errmsg">{{ errorMsg }}</div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+    <script>
+        $("#registerForm").on('submit', function(){
+           let username = $("#username").val()
+           let pwd = $("#password").val()
+           let checkPwd = $("#checkPassword").val()
+           let $errmsg = $("#errmsg")
+           if (username.trim() === '')
+            $errmsg.html('must provide username')
+           else if (pwd.trim() === '')
+            $errmsg.html('must provide password')
+           else if (checkPwd.trim() === '')
+            $errmsg.html('must provide check password')
+           else if (checkPwd !== pwd)
+            $errmsg.html('password must be the same as the check password')
+           else
+            return true;
+           return false
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col">Shares</th>
+          <th scope="col">Price</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for share in shares %}
+          {% if loop.index % 2 == 1 %}
+            <tr class="table-secondary">
+          {% else %}
+            <tr class="table-light">
+          {% endif  %}
+            <th scope="row">{{ share["symbol"] }}</th>
+            <td>{{ share["name"] }}</td>
+            <td>{{ share["shares"] }}</td>
+            <td>{{ share["price"] }}</td>
+            <td>{{ share["total"] }}</td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td>Cash</td>
+          <td colspan="3"></td>
+          <td>{{ user["cash"] }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Balance</td>
+          <td colspan="3"></td>
+          <td>{{ user["total"] }}</td>
+        </tr>
+      </tfoot>
+    </table>
+{% endblock %}

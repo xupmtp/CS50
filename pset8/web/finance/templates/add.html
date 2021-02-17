@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Cash
+{% endblock %}
+
+{% block main %}
+    <form action="/add" method="post">
+        <div class="form-group">
+            <input class="form-control" min="1" name="cash" placeholder="Add Cash" type="number">
+        </div>
+        <div class="form-group errorMsg" id="errMsg">
+            {{ errorMsg }}
+        </div>
+        <button class="btn btn-primary" id="subtn" type="submit">Buy</button>
+    </form>
+    <script>
+        $("#subtn").on('click', () => {
+            let err = $("#errMsg")
+            if (!$("input[name='cash']").val()) {
+                err.html('must provide cash')
+                return false
+            }
+            return true
+        });
+    </script>
+{% endblock %}

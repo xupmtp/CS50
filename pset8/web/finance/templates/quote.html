@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block fileLink %}
+    <script src="static/quote.js"></script>
+{% endblock %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <div class="form-group errorMsg" id="errMsg">
+            {{ errorMsg }}
+        </div>
+        <!--<button type="submit" id="search" class="btn btn-primary">Search</button>-->
+        <button type="button" id="search" class="btn btn-primary">Search</button>
+    </form>
+    <div class="modal" id="stockModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&nbsp;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="modalText"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

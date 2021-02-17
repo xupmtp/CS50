@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reset Password
+{% endblock %}
+
+{% block main %}
+    <form action="/reset" method="post" id="resetForm">
+        <div class="form-group">
+            <input class="form-control" id="opwd" name="old_password" placeholder="Old Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="npwd" name="new_password" placeholder="New Password" type="password">
+        </div>
+        <div class="form-group errorMsg" id="errmsg">{{ errorMsg }}</div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    <script>
+        $("#resetForm").on('submit', function(){
+           let opwd = $("#opwd").val()
+           let npwd = $("#npwd").val()
+           let $errmsg = $("#errmsg")
+
+           if (!opwd || opwd.trim() === '')
+            $errmsg.html('must provide old password')
+           else if (!npwd || npwd.trim() === '')
+            $errmsg.html('must provide new password')
+           else if (opwd == npwd)
+            $errmsg.html('The new password can not be the same as the old password')
+           else
+            return true;
+           return false
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy Shares
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" min="1" name="shares" placeholder="Shares" type="number">
+        </div>
+        <div class="form-group errorMsg" id="errMsg">
+            {{ errorMsg }}
+        </div>
+        <button class="btn btn-primary" id="subtn" type="submit">Buy</button>
+    </form>
+    <script>
+        $("#subtn").on('click', () => {
+            let err = $("#errMsg")
+            if (!$("input[name='symbol']").val()) {
+                err.html('must provide symbol')
+                return false
+            }
+
+            if (!$("input[name='shares']").val()) {
+                err.html('must provide shares')
+                return false
+            }
+            return true
+        });
+
+    </script>
+{% endblock %}
