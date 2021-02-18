@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Image</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Google</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="advanced_search.html">Advanced</a>
+        </li>
+    </ul>
+    <div class="row justify-content-center">
+        <form class="col-6 align-self-center" onsubmit="return check()" action="https://www.google.com/search">
+            <div>
+                <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" />
+            </div>
+            <div class="input-group input-group-lg">
+                <input type="text" name="q" class="form-control" style="border-radius: 2rem;"/>
+            </div>
+            <input type="hidden" name="tbm" value="isch" />
+            <div>
+                <button type="submit">
+                    Search image
+                </button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const check = () => {
+            const text = document.querySelector("form input").value
+            if (!text || text.trim().length === 0)
+                return false
+            return true
+        }
+    </script>
+</body>
+</html>

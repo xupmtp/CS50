@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Google Advanced</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/advanced.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container top">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google" width="93" height="33">
+            </a>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Google</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="image_search.html">Image</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <h5 class="title">
+            Advanced Search
+        </h5>
+    </div>
+    <hr />
+    <div class="main">
+        <form action="https://www.google.com/search">
+            <div class="row mb-3">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm formTopTitle">Find pages with...</label>
+                <div class="col-sm-6"></div>
+                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm endTitle">To do this in the search box.</label>
+            </div>
+            <div class="row mb-3">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm inputTitle">all these words:</label>
+                <div class="col-sm-6">
+                  <input type="text" name="as_q" class="form-control form-control-sm">
+                </div>
+                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm endFont">Type the important words: tri-colour rat terrier</label>
+            </div>
+            <div class="row mb-3">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm inputTitle">this exact word or phrase:</label>
+                <div class="col-sm-6">
+                  <input type="text" name="as_epq" class="form-control form-control-sm">
+                </div>
+                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm endFont">Put exact words in quotes: "rat terrier"</label>
+            </div>
+            <div class="row mb-3">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm inputTitle">any of these words:</label>
+                <div class="col-sm-6">
+                  <input type="text" name="as_oq" class="form-control form-control-sm">
+                </div>
+                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm endFont">Type OR between all the words you want: miniature OR standard</label>
+            </div>
+            <div class="row mb-3">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm inputTitle">none of these words:</label>
+                <div class="col-sm-6">
+                  <input type="text" name="as_eq" class="form-control form-control-sm">
+                </div>
+                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm endFont">Put a minus sign just before words that you don't want: -rodent, -"Jack Russell"</label>
+            </div>
+            <div class="row mb-3">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"></label>
+                <div class="col-sm-6 btnformat">
+                    <button type="submit" class="btn subbtn">Advanced Search</button>
+                </div>
+                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm"></label>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
