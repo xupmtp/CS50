@@ -4,9 +4,6 @@ form {
 form div {
   margin: 25px;
 }
-form input {
-  border-radius: 2rem;
-}
 form button {
   background-color: #f8f9fa;
   border: 1px solid #dadce0;
@@ -21,6 +18,27 @@ form button {
   border-radius: 0.3rem;
 }
 
+.searchdiv {
+  border: 1px solid #dfe1e5;
+  border-radius: 2rem;
+  max-width: 584px;
+  height: 46px;
+}
+
+.form-input {
+  border: none;
+  flex: 1 1 auto;
+  margin: 5px;
+  display: flex;
+  height: 30px;
+}
+
+.form-input:focus {
+  outline: none;
+  border: none;
+  border-color: #fff;
+}
+
 ul {
   margin: 15px;
 }
@@ -28,6 +46,31 @@ ul {
 img {
   height: 92px;
   object-fit: contain;
+}
+
+.searchsvg {
+  width: 20px;
+  height: 20px;
+  margin: 8px 13px;
+}
+
+svg {
+  color: #9aa0a6;
+}
+
+.logo {
+  color: #4285f4;
+  position: fixed;
+  text-align: left;
+  width: 272px;
+  z-index: 200;
+  left: 54vw;
+  top: 22vh;
+}
+
+.imgDiv {
+  z-index: 1;
+  position: relative;
 }
 
 /*# sourceMappingURL=index.css.map */
