@@ -1,0 +1,16 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Error!
+{% endblock %}
+
+{% block style %}
+    h1 {
+    text-align: center;
+    }
+{% endblock %}
+
+{% block body %}
+    <h1 style="font-size: 90px;">{{ status }}</h1>
+    <h1>{{ error_msg|safe }}</h1>
+{% endblock %}

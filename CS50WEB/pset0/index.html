@@ -10,14 +10,14 @@
 <body>
     <ul class="nav justify-content-end">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="image_search.html">Image</a>
+          <a class="nav-link" aria-current="page" href="image_search.html">Image</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="advanced_search.html">Advanced</a>
         </li>
     </ul>
     <div class="row justify-content-center">
-        <form id="form" class="col-6 align-self-center" onsubmit="return check()" action="https://www.google.com/search">
+        <form id="form" class="col-6 align-self-center" onsubmit="return check()" action="https://www.google.com/search" autocomplete="off">
             <div>
                 <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" />
             </div>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <!-- token需定期更新 -->
-            <input type="hidden" id="iflsig" name="iflsig" value="AINFCbYAAAAAYC31wXFaGIpDbk9QI4R5mSY3ftWe6t0C" />
+            <input type="hidden" id="iflsig" name="iflsig" value="AINFCbYAAAAAYDC4YSIcvg8qUorSLvAjshKAy55XMljW" />
             <div>
                 <button type="submit">
                     Google Search
