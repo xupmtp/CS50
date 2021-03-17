@@ -1,0 +1,40 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Update Page
+{% endblock %}
+
+{% block body %}
+    <form class="col-8 needs-validation" novalidate action="{% url 'encyclopedia:update' %}" method="post">
+        {% csrf_token %}
+        <h1>{{ title }}</h1>
+        <input type="hidden" name="title" value="{{ title }}">
+        <hr>
+        <div class="mb-3">
+            <textarea cols="40" rows="13" name="content" class="form-control">{{ content }}</textarea>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please write something.</div>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+    <script>
+        (function () {
+          'use strict'
+          var forms = document.querySelectorAll('.needs-validation')
+
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+                document.querySelector('#errorTitle').style.display = 'none'
+                form.classList.add('was-validated')
+              }, false)
+            })
+        })()
+    </script>
+{% endblock %}

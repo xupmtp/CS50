@@ -5,5 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    {{ content|safe }}
+    <div class="container">
+        {{ content|safe }}
+        <hr>
+        <form action="{% url 'encyclopedia:update' %}" method="get">
+            {% csrf_token %}
+            <input type="hidden" name="title" value="{{ title }}">
+            <button class="btn btn-primary">Edit</button>
+        </form>
+    </div>
 {% endblock %}

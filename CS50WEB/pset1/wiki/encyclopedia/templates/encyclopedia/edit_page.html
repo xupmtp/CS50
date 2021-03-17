@@ -1,0 +1,49 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    New Page
+{% endblock %}
+
+{% block body %}
+        <form class="col-8 needs-validation" novalidate action="{% url 'encyclopedia:create' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            {{ form.title }}
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Invalid title.</div>
+            <span style="color: red;font-size: 80%;" id="errorTitle">{{ error_msg }}</span>
+        </div>
+        <div class="mb-3">
+            {{ form.content }}
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please write something.</div>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+    <script>
+        (function () {
+          'use strict'
+          var forms = document.querySelectorAll('.needs-validation')
+          var span = document.querySelector('#errorTitle')
+          if (span.innerHTML.length > 0) {
+            let title = document.querySelector('#id_title')
+            title.value = ""
+          }
+
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+                document.querySelector('#errorTitle').style.display = 'none'
+                form.classList.add('was-validated')
+              }, false)
+            })
+        })()
+    </script>
+{% endblock %}
