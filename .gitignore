@@ -1,2 +1,6 @@
 aaa.bat
 .vscode/
+.idea/
+local.properties
+.sqlite3
+test.py
